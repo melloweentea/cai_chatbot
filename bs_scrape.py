@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup
 import requests 
 
 def scrape_reviews():
-    html_text = requests.get("https://www.7smesupportcenter.com/contact/").text
+    html_text = requests.get("https://www.7smesupportcenter.com/policy/").text
     soup = BeautifulSoup(html_text, "lxml")
-    title = soup.find_all("strong")
+    a = soup.find_all("a")
     content = soup.find("div", class_="sow-accordion").text.strip()
     
     # h5_text = [i.get_text() for i in h5]

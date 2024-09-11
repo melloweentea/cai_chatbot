@@ -28,7 +28,7 @@ if "chat_history" not in st.session_state:
 
 st.set_page_config(page_title="SMEGPT", page_icon="🤖")
 
-st.title("SMEGPT")
+st.title("SMEsGPT")
 
 #streamlit conversation 
 for message in st.session_state.chat_history:
@@ -71,6 +71,7 @@ if user_query is not None and user_query != "":
     load_db = FAISS.load_local(FAISS_PATH, OpenAIEmbeddings(), allow_dangerous_deserialization=True)
     context = load_db.max_marginal_relevance_search(user_query, k=3)
     context_text = "\n\n---\n\n".join([doc.page_content for doc in context])
+    top_source = [doc.metadata["source"] for doc in context][0]
     
     st.session_state.chat_history.append(HumanMessage(user_query))
     
@@ -79,7 +80,7 @@ if user_query is not None and user_query != "":
         
     with st.chat_message("AI"):
         ai_response = st.write_stream(stream_response(get_response(user_query, st.session_state.chat_history, context_text)))
-            
+        st.write(f"source: {top_source}")
     st.session_state.chat_history.append(AIMessage(ai_response))
     
     
