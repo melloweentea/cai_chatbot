@@ -80,7 +80,7 @@ if user_query is not None and user_query != "":
         
     with st.chat_message("AI"):
         ai_response = st.write_stream(stream_response(get_response(user_query, st.session_state.chat_history, context_text)))
-        st.write(f"source: {top_source}")
+        # st.write(f"source: {top_source}")
     st.session_state.chat_history.append(AIMessage(ai_response))
     
     
