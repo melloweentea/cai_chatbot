@@ -93,6 +93,7 @@ if user_query is not None and user_query != "":
             context_pruned.append(context_list[idx])
     # st.write(context_pruned)
     context_text = "\n\n---\n\n".join([doc.page_content for doc in context_pruned])
+    print(context_text)
     # top_source = [doc.metadata["source"] for doc in context_pruned][0]
     
     st.session_state.chat_history.append(HumanMessage(user_query))
