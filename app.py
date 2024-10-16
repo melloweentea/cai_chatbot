@@ -37,8 +37,12 @@ if "user_query" not in st.session_state:
 
 st.set_page_config(page_title="SMEGPT", page_icon="🤖")
 
-st.title("SMEsGPT")
-
+col1, mid, col2 = st.columns([1,1.5,20])
+with col1:
+    st.image("photo_2024-10-16_15-19-31.jpg", output_format="JPEG", width=80)
+with col2:
+    st.title("SAMMY")
+    
 #streamlit conversation 
 for message in st.session_state.chat_history:
     if isinstance(message, HumanMessage):
